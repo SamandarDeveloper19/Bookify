@@ -416,3 +416,14 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+
+# Local database volumes
+.containers/
+
+# Local Docker override
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# Local appsettings.Development.json files
+Bookify.Api/appsettings.Development.json
