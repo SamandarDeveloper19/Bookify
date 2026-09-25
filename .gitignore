@@ -427,3 +427,4 @@ docker-compose.override.yaml
 
 # Local appsettings.Development.json files
 Bookify.Api/appsettings.Development.json
+/.files
