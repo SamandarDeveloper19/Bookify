@@ -20,6 +20,8 @@ public static class DependencyInjection
 
             mConfig.AddOpenBehavior(typeof(ValidationBehavior<,>));
 
+            mConfig.AddOpenBehavior(typeof(QueryCachingBehavior<,>));
+
             mConfig.LicenseKey = configuration["MediatR:LicenseKey"];
         });
 
