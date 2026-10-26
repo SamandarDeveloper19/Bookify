@@ -8,7 +8,7 @@ using Serilog;
 
 namespace Bookify.Api;
 
-public class Program
+public partial class Program
 {
     public static void Main(string[] args)
     {
@@ -47,7 +47,7 @@ public class Program
 
             app.ApplyMigrations();
 
-            //app.SeedData();
+            app.SeedData();
         }
 
         app.UseHttpsRedirection();
@@ -72,3 +72,5 @@ public class Program
         app.Run();
     }
 }
+
+public partial class Program;

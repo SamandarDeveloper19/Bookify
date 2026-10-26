@@ -1,0 +1,20 @@
+﻿using Bookify.Infrastructure;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Bookify.Application.IntegrationTests.Infrastructure;
+
+public abstract class BaseIntegrationTest : IClassFixture<IntegrationTestWebAppFactory>
+{
+    private readonly IServiceScope scope;
+    protected readonly ISender Sender;
+    protected readonly ApplicationDbContext DbContext;
+
+    protected BaseIntegrationTest(IntegrationTestWebAppFactory factory)
+    {
+        scope = factory.Services.CreateScope();
+
+        Sender = scope.ServiceProvider.GetRequiredService<ISender>();
+        DbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    }
+}
