@@ -30,7 +30,9 @@ public class UsersController : ControllerBase
 
         var result = await sender.Send(query, cancellationToken);
 
-        return Ok(result.Value);
+        return result.IsSuccess
+            ? Ok(result.Value)
+            : NotFound(result.Error);
     }
 
     [AllowAnonymous]

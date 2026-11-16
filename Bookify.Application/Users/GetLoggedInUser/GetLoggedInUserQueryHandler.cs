@@ -2,6 +2,7 @@
 using Bookify.Application.Abstractions.Data;
 using Bookify.Application.Abstractions.Messaging;
 using Bookify.Domain.Abstractions;
+using Bookify.Domain.Users;
 using Dapper;
 
 namespace Bookify.Application.Users.GetLoggedInUser;
@@ -36,12 +37,19 @@ internal sealed class GetLoggedInUserQueryHandler
             WHERE identity_id = @IdentityId
             """;
 
-        var user = await connection.QuerySingleAsync<UserResponse>(
-            sql,
-            new
-            {
-                _userContext.IdentityId
-            });
+        var user = await connection.QuerySingleOrDefaultAsync<UserResponse>(
+            new CommandDefinition(
+                sql,
+                new
+                {
+                    _userContext.IdentityId
+                },
+                cancellationToken: cancellationToken));
+
+        if (user is null)
+        {
+            return Result.Failure<UserResponse>(UserErrors.NotFound);
+        }
 
         return user;
     }

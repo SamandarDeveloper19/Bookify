@@ -63,6 +63,8 @@ public static class DependencyInjection
 
         services.Configure<Bookify.Infrastructure.Authentication.AuthenticationOptions>(configuration.GetSection("Authentication"));
 
+        services.ConfigureOptions<JwtBearerOptionsSetup>();
+
         services.Configure<KeycloakOptions>(configuration.GetSection("Keycloak"));
 
         services.AddTransient<AdminAuthorizationDelegatingHandler>();

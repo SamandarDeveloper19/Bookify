@@ -7,9 +7,9 @@ internal sealed class JwtBearerOptionsSetup : IConfigureNamedOptions<JwtBearerOp
 {
     private readonly AuthenticationOptions authenticationOptions;
 
-    public JwtBearerOptionsSetup(AuthenticationOptions authenticationOptions)
+    public JwtBearerOptionsSetup(IOptions<AuthenticationOptions> authenticationOptions)
     {
-        this.authenticationOptions = authenticationOptions;
+        this.authenticationOptions = authenticationOptions.Value;
     }
 
     public void Configure(JwtBearerOptions options)
