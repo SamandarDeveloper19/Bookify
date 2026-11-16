@@ -25,7 +25,9 @@ public static class DependencyInjection
             mConfig.LicenseKey = configuration["MediatR:LicenseKey"];
         });
 
-        services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
+        services.AddValidatorsFromAssembly(
+            typeof(DependencyInjection).Assembly,
+            includeInternalTypes: true);
 
         services.AddTransient<PricingService>();
 
